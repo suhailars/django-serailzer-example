@@ -16,8 +16,8 @@ class Invoice(models.Model):
 class Transaction(models.Model):
 
     product = models.CharField(max_length=30)
-    quantity = models.IntegerField(default=0)
-    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    quantity = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     line_total = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     invoice_id = models.ForeignKey(Invoice, related_name='transactions')
     
