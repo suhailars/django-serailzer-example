@@ -29,7 +29,6 @@ class InvoiceList(APIView):
 
     def post(self, request, format=None):
         data = request.data
-        print data
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -53,7 +52,7 @@ class InvoiceDetails(APIView):
     def get_object(self, pk):
         try:
             return Invoice.objects.get(pk=pk)
-        except Size.DoesNotExist:
+        except Invoice.DoesNotExist:
             raise Http404    
 
     def get(self, request, pk, format=None):
