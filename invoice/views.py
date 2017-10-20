@@ -70,7 +70,6 @@ class InvoiceDetails(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        size = self.get_object(pk)
-        size.active = 0
-        size.save()
+        invoice = self.get_object(pk)
+        invoice.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
