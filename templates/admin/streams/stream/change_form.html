@@ -1,0 +1,28 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+{% block object-tools-items %}
+    {{ block.super }}
+{% endblock %}
+{% block after_related_objects %}
+   {% if change %}
+       <div class="">
+        <p>
+   		<a class="grp-state-focus addlink" href="{% url 'admin:streams_streamembed_changelist' %}?stream={{original.pk}}">show stream embed</a>
+   		</p>
+   		<p>
+   		<a class="grp-state-focus addlink" href="{% url 'admin:streams_streamrequest_changelist' %}?stream={{original.pk}}">show stream request</a>
+   		</p>
+   		<p>
+   		<a class="grp-state-focus addlink" href="{% url 'admin:streams_streaminvitation_changelist' %}?stream={{original.pk}}">show stream invitation</a>
+   		</p>
+   		<p>
+   		<!--a class="grp-state-focus addlink" href="{% url 'admin:streams_streamconnection_changelist' %}?stream={{original.pk}}" 
+   		onclick="return showAddAnotherPopup(this);">show stream connections</a-->
+   		<a class="grp-state-focus addlink" href="{% url 'admin:streams_streamconnection_changelist' %}?stream={{original.pk}}">
+   		  show stream connections
+   		</a>
+   		</p>
+
+   	  </div>
+    {% endif %}
+{% endblock %}

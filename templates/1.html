@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="socialheap">
+<head>
+  <title>socialheap</title>
+
+  <base href="/" />
+
+  {% include 'stylesheets.html' %}
+</head>
+
+<body>
+  {% include 'navbar.html' %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <div ui-view></div>
+    </div>
+  </div>
+
+  {% include 'javascripts.html' %}
+</body>
+</html>

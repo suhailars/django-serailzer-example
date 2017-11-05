@@ -1,0 +1,43 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Growthplug</h2>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h4 class="title">Data</h4>
+                    <p class="category">Details about pages</p>
+                </div>               
+                <div class="ibox-content">
+                    <table  class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>name</th>
+                            <th>category</th>
+                            <th>action</th>
+                        </tr>
+                        </thead>
+                        <tbody>               
+                            <tr data-ng-repeat="item in pages" >
+                                <td>{{($index + 1)}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.category}}</td>
+                                <td>                            
+                                    <button  ng-click="update(item.page_id)" class="btn btn-info btn-fill pull-right">
+                                    UPDATE</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

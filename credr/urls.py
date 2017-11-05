@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic.base import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^invoices/', include('invoice.urls')),
+    url(r'^account/', include('account.urls')),
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name="home"),
 ]
+
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

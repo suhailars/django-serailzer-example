@@ -1,0 +1,50 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">Bussiness Info</h4>
+        <small class="font-bold">..</small>
+    </div>
+    <div class="modal-body">
+        <p><h3>Price Range</h3></p>
+        <form name="priceForm">
+        <label>
+            <input type="radio" ng-model="price.val" value="$">
+            $
+        </label><br/>
+        <label>
+            <input type="radio" ng-model="price.val" value="$$">
+            $$
+        </label><br/>
+        <label>
+            <input type="radio" ng-model="price.val" value="$$$">
+            $$$
+        </label><br/>
+        <label>
+            <input type="radio" ng-model="price.val" value="$$$$">
+            $$$$
+        </label><br/>
+        </form> 
+        <p></p>
+        <p><h3>Parking</h3></p>
+        <form name="parkingForm">
+            <input type="checkbox" ng-model="parking.street"> Street <br>
+            <input type="checkbox" ng-model="parking.lot">  Parking Lot <br>
+            <input type="checkbox" ng-model="parking.valet">  valet <br>
+        </form>
+        <p></p>
+        <p><h3>Working days</h3></p>
+        <form name="hoursForm">
+          <input type="checkbox" ng-model="hours.value1">Monday<br>
+          <input type="checkbox" ng-model="hours.value2">Tuesday<br>
+          <input type="checkbox" ng-model="hours.value3">Wenesday<br>
+          <input type="checkbox" ng-model="hours.value4">Thursday<br>
+          <input type="checkbox" ng-model="hours.value5">Friday<br>
+          <input type="checkbox" ng-model="hours.value6">Saturday<br>
+          <input type="checkbox" ng-model="hours.value7">Sunday<br>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Save changes</button>
+    </div>
+</div>
+

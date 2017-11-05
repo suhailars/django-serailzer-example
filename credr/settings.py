@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'invoice',
+    'social_django',
+    'rest_framework.authtoken',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +59,9 @@ ROOT_URLCONF = 'credr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +74,31 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
 WSGI_APPLICATION = 'credr.wsgi.application'
+
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.RemoteUserBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+#     'social_core.backends.facebook.FacebookAppOAuth2',
+#     'social_core.backends.facebook.FacebookOAuth2',
+#     'social_core.backends.google.GoogleOAuth2',
+#     'social_core.backends.twitter.TwitterOAuth'
+# )
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend', 'account.myauth.FBBackend']
+
 
 
 # Database
@@ -101,7 +130,43 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+    #'social.pipeline.get_profile_image'
+)
 
+SOCIAL_AUTH_DISCONNECT_PIPELINE = (
+    # Verifies that the social association can be disconnected from the current
+    # user (ensure that the user login mechanism is not compromised by this
+    # disconnection).
+    'social_core.pipeline.disconnect.allowed_to_disconnect',
+
+    # Collects the social associations to disconnect.
+    'social_core.pipeline.disconnect.get_entries',
+
+    # Revoke any access_token when possible.
+    'social_core.pipeline.disconnect.revoke_tokens',
+
+    # Removes the social associations.
+    'social_core.pipeline.disconnect.disconnect',
+    #'social.pipeline.deactivate_connection',
+)
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1295136350574737'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6efd1e3ee00857b892f014b93f040487'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '342017901096-h980lmin850it1ug6j41pi55o5q5q2ct.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9Ju9QsngLEM3hZOzaidsxUJS'
+SOCIAL_AUTH_TWITTER_KEY = 'Qz1jB0SWo95w2dk6M0wq9w'
+SOCIAL_AUTH_TWITTER_SECRET = 'QpVQvo25OUExLWZVxQvYezTtnW82XxDo9jm0WySH6Kw'
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -120,3 +185,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    #'/var/www/static/',
+]
