@@ -25,8 +25,7 @@ SECRET_KEY = 'd(m((xs1yn$0ubk1a@h*tnqz7!5%hfih_y22e3v6f3e^)&!xay'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', 'fb-pages-update.herokuapp.com']
 
 # Application definition
 
